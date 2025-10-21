@@ -1,0 +1,15 @@
+accelerate==1.10.1
+peft==0.15.2
+transformers==4.56.1
+triton==3.2.0
+trl==0.22.2
+bitsandbytes==0.45.5
+deepspeed==0.17.5
+datasets==3.6.0
+liger-kernel==0.5.8
+flash-attn==2.7.3
+huggingface_hub
+vllm
+hf_transfer
+protobuf==5.28.3
+

@@ -1,0 +1,48 @@
+# Model arguments
+model_name_or_path: Qwen/Qwen3-0.6B
+tokenizer_name_or_path: Qwen/Qwen3-0.6B
+model_revision: main
+torch_dtype: bfloat16
+
+#attn_implementation: flash_attention_2
+#use_liger: false
+bf16: true
+tf32: true
+
+#Local Paths
+model_download_location: /opt/ml/model/input
+output_dir: /opt/ml/model/output
+
+# Dataset arguments
+dataset_id_or_path: /opt/ml/input/data/training_dataset/
+dataset_local_location: /opt/ml/input/data/training_dataset/
+
+# Training arguments
+beta: 0.1
+max_length: 2500
+max_prompt_length: 2000
+loss_type: sigmoid # default loss, alternatives: https://huggingface.co/docs/trl/dpo_trainer#loss-functions
+num_train_epochs: 1
+per_device_train_batch_size: 8 
+gradient_accumulation_steps: 8
+gradient_checkpointing: true
+gradient_checkpointing_kwargs:
+  use_reentrant: true
+learning_rate: 5.0e-7 
+lr_scheduler_type: cosine
+warmup_ratio: 0.05
+
+# Logging arguments
+logging_strategy: steps
+logging_steps: 5
+report_to:
+- tensorboard
+save_strategy: "no"
+seed: 42
+
+#Low Level Hardware Config
+fi_provider: efa
+nccl_proto: simple
+nccl_socket_ifname: eth0
+nccl_ib_disable: 1
+nccl_debug: WARN
